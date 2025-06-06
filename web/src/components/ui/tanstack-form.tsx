@@ -1,5 +1,4 @@
 import { Slot } from '@radix-ui/react-slot';
-import * as React from 'react';
 
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
@@ -8,6 +7,13 @@ import {
   createFormHookContexts,
   useStore,
 } from '@tanstack/react-form';
+import {
+  createContext,
+  useContext,
+  useId,
+  type ComponentProps,
+  type FormHTMLAttributes,
+} from 'react';
 
 const {
   fieldContext,
@@ -33,12 +39,12 @@ type FormItemContextValue = {
   id: string;
 };
 
-const FormItemContext = React.createContext<FormItemContextValue>(
+const FormItemContext = createContext<FormItemContextValue>(
   {} as FormItemContextValue,
 );
 
-function FormItem({ className, ...props }: React.ComponentProps<'div'>) {
-  const id = React.useId();
+function FormItem({ className, ...props }: ComponentProps<'div'>) {
+  const id = useId();
 
   return (
     <FormItemContext.Provider value={{ id }}>
@@ -52,7 +58,7 @@ function FormItem({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 const useFieldContext = () => {
-  const { id } = React.useContext(FormItemContext);
+  const { id } = useContext(FormItemContext);
   const { name, store, ...fieldContext } = useFormFieldContext();
 
   const errors = useStore(store, (state) => state.meta.errors);
@@ -72,10 +78,7 @@ const useFieldContext = () => {
   };
 };
 
-function FormLabel({
-  className,
-  ...props
-}: React.ComponentProps<typeof Label>) {
+function FormLabel({ className, ...props }: ComponentProps<typeof Label>) {
   const { formItemId, errors } = useFieldContext();
 
   return (
@@ -89,7 +92,7 @@ function FormLabel({
   );
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
+function FormControl({ ...props }: ComponentProps<typeof Slot>) {
   const { errors, formItemId, formDescriptionId, formMessageId } =
     useFieldContext();
 
@@ -108,7 +111,7 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   );
 }
 
-function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
+function FormDescription({ className, ...props }: ComponentProps<'p'>) {
   const { formDescriptionId } = useFieldContext();
 
   return (
@@ -121,7 +124,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
   );
 }
 
-function FormMessage({ className, ...props }: React.ComponentProps<'p'>) {
+function FormMessage({ className, ...props }: ComponentProps<'p'>) {
   const { errors, formMessageId } = useFieldContext();
   const body = errors.length
     ? String(errors.at(0)?.message ?? '')
@@ -140,4 +143,16 @@ function FormMessage({ className, ...props }: React.ComponentProps<'p'>) {
   );
 }
 
-export { useAppForm, useFormContext, useFieldContext, withForm };
+interface FormProps<T extends object = {}>
+  extends Omit<FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
+  onSubmit: (data: T) => void;
+  defaultValues?: T;
+}
+
+export {
+  useAppForm,
+  useFormContext,
+  useFieldContext,
+  withForm,
+  type FormProps,
+};
