@@ -25,7 +25,7 @@ export const mainNavs: NavItem[] = [
     icon: Aperture,
   },
   {
-    title: '模特',
+    title: '人物',
     path: '/performers',
     icon: UsersRound,
   },
