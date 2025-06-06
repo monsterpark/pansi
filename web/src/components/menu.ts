@@ -60,4 +60,4 @@ export const settingNavs: NavItem[] = [
 /**
  * 所有菜单
  */
-export const allNavs = mainNavs.concat(settingNavs);
+export const allNavs = [...mainNavs, ...settingNavs];

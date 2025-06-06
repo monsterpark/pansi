@@ -28,7 +28,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-bold'>盘丝洞</span>
-                  <span className='truncate text-xs'>这里都是妖怪</span>
+                  <span className='truncate text-xs'>这里都是妖精</span>
                 </div>
               </Link>
             </SidebarMenuButton>
