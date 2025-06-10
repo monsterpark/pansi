@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as LibrariesImport } from './routes/libraries'
 import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
@@ -20,7 +21,6 @@ import { Route as IndexImport } from './routes/index'
 const TagsLazyImport = createFileRoute('/tags')()
 const StatsLazyImport = createFileRoute('/stats')()
 const PerformersLazyImport = createFileRoute('/performers')()
-const LibrariesLazyImport = createFileRoute('/libraries')()
 const GalleriesLazyImport = createFileRoute('/galleries')()
 const AboutLazyImport = createFileRoute('/about')()
 
@@ -44,12 +44,6 @@ const PerformersLazyRoute = PerformersLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/performers.lazy').then((d) => d.Route))
 
-const LibrariesLazyRoute = LibrariesLazyImport.update({
-  id: '/libraries',
-  path: '/libraries',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/libraries.lazy').then((d) => d.Route))
-
 const GalleriesLazyRoute = GalleriesLazyImport.update({
   id: '/galleries',
   path: '/galleries',
@@ -61,6 +55,12 @@ const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+
+const LibrariesRoute = LibrariesImport.update({
+  id: '/libraries',
+  path: '/libraries',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/libraries.lazy').then((d) => d.Route))
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -79,6 +79,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/libraries': {
+      id: '/libraries'
+      path: '/libraries'
+      fullPath: '/libraries'
+      preLoaderRoute: typeof LibrariesImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -91,13 +98,6 @@ declare module '@tanstack/react-router' {
       path: '/galleries'
       fullPath: '/galleries'
       preLoaderRoute: typeof GalleriesLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/libraries': {
-      id: '/libraries'
-      path: '/libraries'
-      fullPath: '/libraries'
-      preLoaderRoute: typeof LibrariesLazyImport
       parentRoute: typeof rootRoute
     }
     '/performers': {
@@ -128,9 +128,9 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/libraries': typeof LibrariesRoute
   '/about': typeof AboutLazyRoute
   '/galleries': typeof GalleriesLazyRoute
-  '/libraries': typeof LibrariesLazyRoute
   '/performers': typeof PerformersLazyRoute
   '/stats': typeof StatsLazyRoute
   '/tags': typeof TagsLazyRoute
@@ -138,9 +138,9 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/libraries': typeof LibrariesRoute
   '/about': typeof AboutLazyRoute
   '/galleries': typeof GalleriesLazyRoute
-  '/libraries': typeof LibrariesLazyRoute
   '/performers': typeof PerformersLazyRoute
   '/stats': typeof StatsLazyRoute
   '/tags': typeof TagsLazyRoute
@@ -149,9 +149,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/libraries': typeof LibrariesRoute
   '/about': typeof AboutLazyRoute
   '/galleries': typeof GalleriesLazyRoute
-  '/libraries': typeof LibrariesLazyRoute
   '/performers': typeof PerformersLazyRoute
   '/stats': typeof StatsLazyRoute
   '/tags': typeof TagsLazyRoute
@@ -161,27 +161,27 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/libraries'
     | '/about'
     | '/galleries'
-    | '/libraries'
     | '/performers'
     | '/stats'
     | '/tags'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/libraries'
     | '/about'
     | '/galleries'
-    | '/libraries'
     | '/performers'
     | '/stats'
     | '/tags'
   id:
     | '__root__'
     | '/'
+    | '/libraries'
     | '/about'
     | '/galleries'
-    | '/libraries'
     | '/performers'
     | '/stats'
     | '/tags'
@@ -190,9 +190,9 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LibrariesRoute: typeof LibrariesRoute
   AboutLazyRoute: typeof AboutLazyRoute
   GalleriesLazyRoute: typeof GalleriesLazyRoute
-  LibrariesLazyRoute: typeof LibrariesLazyRoute
   PerformersLazyRoute: typeof PerformersLazyRoute
   StatsLazyRoute: typeof StatsLazyRoute
   TagsLazyRoute: typeof TagsLazyRoute
@@ -200,9 +200,9 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LibrariesRoute: LibrariesRoute,
   AboutLazyRoute: AboutLazyRoute,
   GalleriesLazyRoute: GalleriesLazyRoute,
-  LibrariesLazyRoute: LibrariesLazyRoute,
   PerformersLazyRoute: PerformersLazyRoute,
   StatsLazyRoute: StatsLazyRoute,
   TagsLazyRoute: TagsLazyRoute,
@@ -219,9 +219,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/libraries",
         "/about",
         "/galleries",
-        "/libraries",
         "/performers",
         "/stats",
         "/tags"
@@ -230,14 +230,14 @@ export const routeTree = rootRoute
     "/": {
       "filePath": "index.tsx"
     },
+    "/libraries": {
+      "filePath": "libraries.tsx"
+    },
     "/about": {
       "filePath": "about.lazy.tsx"
     },
     "/galleries": {
       "filePath": "galleries.lazy.tsx"
-    },
-    "/libraries": {
-      "filePath": "libraries.lazy.tsx"
     },
     "/performers": {
       "filePath": "performers.lazy.tsx"
