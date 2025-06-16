@@ -52,7 +52,7 @@ importers:
         version: 1.121.0(@tanstack/react-router@1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.121.0)(csstype@3.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tiny-invariant@1.3.3)
       '@tanstack/zod-adapter':
         specifier: ^1.120.16
-        version: 1.120.16(@tanstack/react-router@1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.57)
+        version: 1.120.16(@tanstack/react-router@1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.64)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -78,8 +78,8 @@ importers:
         specifier: ^0.7.8
         version: 0.7.8
       zod:
-        specifier: ^3.25.57
-        version: 3.25.57
+        specifier: ^3.25.64
+        version: 3.25.64
     devDependencies:
       '@eslint/js':
         specifier: ^9.28.0
@@ -2215,8 +2215,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@3.25.57:
-    resolution: {integrity: sha512-6tgzLuwVST5oLUxXTmBqoinKMd3JeesgbgseXeFasKKj8Q1FCZrHnbqJOyiEvr4cVAlbug+CgIsmJ8cl/pU5FA==}
+  zod@3.25.64:
+    resolution: {integrity: sha512-hbP9FpSZf7pkS7hRVUrOjhwKJNyampPgtXKc3AN6DsWtoHsg2Sb4SQaS4Tcay380zSwd2VPo9G9180emBACp5g==}
 
 snapshots:
 
@@ -3147,7 +3147,7 @@ snapshots:
       '@tanstack/virtual-file-routes': 1.115.0
       prettier: 3.5.3
       tsx: 4.19.4
-      zod: 3.25.57
+      zod: 3.25.64
     optionalDependencies:
       '@tanstack/react-router': 1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
@@ -3169,7 +3169,7 @@ snapshots:
       babel-dead-code-elimination: 1.0.10
       chokidar: 3.6.0
       unplugin: 2.3.5
-      zod: 3.25.57
+      zod: 3.25.64
     optionalDependencies:
       '@tanstack/react-router': 1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       vite: 6.3.5(@types/node@22.15.30)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4)
@@ -3187,10 +3187,10 @@ snapshots:
 
   '@tanstack/virtual-file-routes@1.115.0': {}
 
-  '@tanstack/zod-adapter@1.120.16(@tanstack/react-router@1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.57)':
+  '@tanstack/zod-adapter@1.120.16(@tanstack/react-router@1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.64)':
     dependencies:
       '@tanstack/react-router': 1.121.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      zod: 3.25.57
+      zod: 3.25.64
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -4105,4 +4105,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@3.25.57: {}
+  zod@3.25.64: {}
