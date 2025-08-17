@@ -4,7 +4,7 @@ go 1.24
 
 require (
 	github.com/amacneil/dbmate/v2 v2.28.0
-	github.com/dromara/carbon/v2 v2.6.9
+	github.com/dromara/carbon/v2 v2.6.11
 	gorm.io/gorm v1.30.1
 	goyave.dev/filter v0.8.0
 	goyave.dev/goyave/v5 v5.7.0
