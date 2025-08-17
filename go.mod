@@ -3,7 +3,7 @@ module github.com/monsterpark/pansi
 go 1.24
 
 require (
-	github.com/amacneil/dbmate/v2 v2.27.0
+	github.com/amacneil/dbmate/v2 v2.28.0
 	github.com/dromara/carbon/v2 v2.6.9
 	gorm.io/gorm v1.30.0
 	goyave.dev/filter v0.8.0
